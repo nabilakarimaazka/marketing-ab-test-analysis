@@ -12,14 +12,13 @@ group? If so, how large is the effect, and is it large enough to justify
 the cost of the campaign?
 
 ## 3. Experiment Design
-- Unit of randomization & analysis : user (`user id`)
-- Treatment                        : `ad` group — shown product ads
-- Control                          : `psa` group — shown public service
-                                     announcements (placebo)
-- Allocation                       : unbalanced (~96% ad / ~4% psa);
-                                     the planned allocation ratio is not
-                                     documented
-- Data source                      : Kaggle, faviovaz/marketing-ab-testing
+| Item | Description |
+|---|---|
+| Unit of randomization & analysis | user (`user id`) |
+| Treatment | `ad` group — shown product ads |
+| Control | `psa` group — shown public service announcements (placebo) |
+| Allocation | unbalanced (~96% ad / ~4% psa); planned ratio not documented |
+| Data source | Kaggle, faviovaz/marketing-ab-testing |
 
 ## 4. Metrics
 - Primary metric : conversion rate
@@ -58,10 +57,10 @@ standard practice.
 ## 7. Decision Rules
 - The effect is statistically significant if p-value < 0.05 AND the 95%
   CI for the difference in proportions does not contain 0.
-- The effect is practically significant if absolute lift ≥
-  [fill in, e.g., 0.5 percentage points].
-  Rationale: [fill in one sentence on why this threshold matters for
-  the business]
+- Practical significance: no minimum business threshold was
+  pre-specified, because no cost or revenue data is available to
+  justify one. Practical significance is therefore assessed
+  descriptively from the confidence interval (see Section 10).
 - Recommendation:
   - Significant + practically meaningful     → continue / scale the campaign
   - Significant, not practically meaningful  → review cost vs. benefit
@@ -71,7 +70,7 @@ standard practice.
 ## 8. Threats to Validity & Limitations
 - Unbalanced allocation with an unknown planned ratio, so a formal Sample
   Ratio Mismatch (SRM) test cannot be run. The observed ratio will be
-  reported.
+  reported. (See Section 10 for an SRM check under an assumed 96/4 design.)
 - Randomization cannot be fully verified (no pre-experiment user
   characteristics are available).
 - `total ads`, `most ads day`, and `most ads hour` were measured during
@@ -82,3 +81,11 @@ standard practice.
 ## 9. Out of Scope
 - Campaign ROI estimation (cost data not available)
 - Predictive modeling of conversion
+
+## 10. Amendment (added after the primary analysis, Nov 2026)
+- Practical significance: the 95% CI for the absolute lift is
+  [0.595 pp, 0.943 pp], so any business threshold below ~0.6 pp is
+  met even under the most conservative estimate.
+- The observed allocation (96.0% / 4.0%) matched a 96/4 design almost
+  exactly; an SRM chi-square test against an assumed 96/4 design showed
+  no mismatch (see notebook 01).
