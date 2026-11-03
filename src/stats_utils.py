@@ -26,7 +26,8 @@ def diff_confidence_interval(x1, n1, x2, n2, confidence=0.95):
 def lift(x1, n1, x2, n2):
     """Absolute lift (p1 - p2) and relative lift ((p1 - p2) / p2)."""
     p1, p2 = x1 / n1, x2 / n2
-    return p1 - p2, (p1 - p2) / p2
+    rel = (p1 - p2) / p2 if p2 > 0 else float("nan")
+    return p1 - p2, rel
 
 def mde_two_proportions(p_baseline, n1, n2, alpha=0.05, power=0.80):
     """Approximate minimum detectable effect (absolute difference)
